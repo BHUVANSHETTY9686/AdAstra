@@ -47,10 +47,20 @@
             background-color: #050508;
             color: white;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .nav-transition {
             transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        /* Mobile video optimization */
+        @media (max-width: 768px) {
+            video {
+                min-height: 100vh;
+                object-position: center;
+            }
         }
 
         .section-title {
@@ -126,18 +136,18 @@
     <!-- Hero -->
     <header id="home" class="relative min-h-screen flex items-center overflow-hidden">
         <!-- Background Video -->
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <video autoplay muted loop playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover z-0" poster="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop">
             <source src="assets/videos/backgroundvideo.mp4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/30 via-brand-dark/60 to-brand-dark/95 z-10"></div>
         <div class="relative container mx-auto px-6 py-24 grid gap-12 lg:grid-cols-[1.2fr_1fr] items-center z-20">
             <div>
                 <p class="text-brand-cyan font-semibold tracking-[0.5rem] uppercase mb-6">Game Studio · Est. 2020</p>
-                <h1 class="font-display font-black text-5xl md:text-7xl leading-tight mb-8">
+                <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-8">
                     Cinematic Worlds<br>
                     Crafted For Bold Explorers
                 </h1>
-                <p class="text-lg md:text-xl text-white/75 max-w-2xl mb-10">
+                <p class="text-base sm:text-lg md:text-xl text-white/75 max-w-2xl mb-10">
                     From concept art to final launch, we build story-rich experiences that blend stellar art direction, atmospheric audio, and responsive gameplay.
                 </p>
                 <div class="flex flex-wrap gap-4">
@@ -146,9 +156,9 @@
                 </div>
             </div>
 
-            <div class="glass-card rounded-3xl p-8 flex flex-col gap-6 max-w-sm">
-                <span class="text-sm uppercase tracking-[0.3rem] text-brand-cyan">Upcoming Launch</span>
-                <h3 class="font-display text-3xl">Project Nebula</h3>
+            <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col gap-4 sm:gap-6 max-w-sm mx-auto lg:mx-0">
+                <span class="text-xs sm:text-sm uppercase tracking-[0.2rem] sm:tracking-[0.3rem] text-brand-cyan">Upcoming Launch</span>
+                <h3 class="font-display text-2xl sm:text-3xl">Project Nebula</h3>
                 <p class="text-white/70 text-sm leading-relaxed">
                     A survival odyssey across procedurally generated star systems. Co-op exploration, emergent narrative, fully orchestrated soundtrack.
                 </p>
@@ -163,13 +173,13 @@
 
     <!-- Showreel -->
     <section id="showreel" class="py-24 bg-brand-dark/70">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-                <h2 class="section-title font-display font-black text-4xl md:text-5xl">Showreel 2026</h2>
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
+                <h2 class="section-title font-display font-black text-3xl sm:text-4xl md:text-5xl">Showreel 2026</h2>
                 <p class="md:max-w-xl text-white/70 text-base">A quick dive into the universes we craft. Replace the video below with your own YouTube or Vimeo trailer link.</p>
             </div>
 
-            <div class="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+            <div class="relative aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/10">
                 <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/1cWfRBY2qOk" title="Ad Astra Showreel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
@@ -189,8 +199,8 @@
                 </div>
             </div>
 
-            <div class="grid gap-8 lg:grid-cols-3">
-                <article class="featured-card rounded-3xl overflow-hidden border border-white/10 bg-white/5">
+            <div class="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <article class="featured-card rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-white/5">
                     <div class="relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1614726365723-49cfae92782f?q=80&w=1600&auto=format&fit=crop" alt="Project Nebula key art" class="h-64 w-full object-cover">
                         <span class="absolute top-4 right-4 bg-black/70 px-3 py-1 text-xs uppercase tracking-[0.3rem] rounded-full">Co-op</span>
@@ -302,8 +312,8 @@
                 <p class="md:max-w-xl text-white/70 text-base">Drop in your own concept art, behind-the-scenes photographs, or promotional renders.</p>
             </div>
 
-            <div class="grid gap-4 md:grid-cols-3">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop" alt="Concept art 1" class="rounded-3xl object-cover h-64 w-full">
+            <div class="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-3">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop" alt="Concept art 1" class="rounded-2xl sm:rounded-3xl object-cover h-48 sm:h-64 w-full">
                 <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Concept art 2" class="rounded-3xl object-cover h-64 w-full">
                 <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop" alt="Concept art 3" class="rounded-3xl object-cover h-64 w-full">
                 <img src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=1200&auto=format&fit=crop" alt="Concept art 4" class="rounded-3xl object-cover h-64 w-full">
