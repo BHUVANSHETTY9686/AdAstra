@@ -124,9 +124,13 @@
     </div>
 
     <!-- Hero -->
-    <header id="home" class="relative min-h-screen flex items-center">
-        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center"></div>
-        <div class="relative container mx-auto px-6 py-24 grid gap-12 lg:grid-cols-[1.2fr_1fr] items-center">
+    <header id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Background Video -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="assets/videos/backgroundvideo.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/30 via-brand-dark/60 to-brand-dark/95 z-10"></div>
+        <div class="relative container mx-auto px-6 py-24 grid gap-12 lg:grid-cols-[1.2fr_1fr] items-center z-20">
             <div>
                 <p class="text-brand-cyan font-semibold tracking-[0.5rem] uppercase mb-6">Game Studio · Est. 2020</p>
                 <h1 class="font-display font-black text-5xl md:text-7xl leading-tight mb-8">
