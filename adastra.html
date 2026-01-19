@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Astra | To The Stars</title>
+    <meta name="description" content="Ad Astra is a narrative-driven game studio crafting cinematic worlds, unforgettable soundscapes, and daring adventures for explorers of every galaxy.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            cyan: '#33e1ff',
+                            dark: '#050508',
+                            gray: '#1f1f1f',
+                            light: '#f3f5f8'
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(5,5,8,0.15), rgba(5,5,8,0.92)), url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2400&auto=format&fit=crop')",
+                        'grid-nebula': "linear-gradient(to bottom, rgba(5,5,8,0.6), rgba(5,5,8,0.95)), url('https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?q=80&w=2000&auto=format&fit=crop')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050508;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .nav-transition {
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-left: 1.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #33e1ff 0%, #a855f7 100%);
+            box-shadow: 0 0 12px rgba(51, 225, 255, 0.65);
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(16px);
+        }
+
+        .featured-card img {
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+        }
+
+        .featured-card:hover img {
+            transform: scale(1.06);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="nav-transition fixed inset-x-0 top-0 z-50 px-6 py-6 flex items-center justify-between bg-transparent">
+        <a href="#home" class="flex items-center gap-3">
+            <svg class="w-10 h-10 fill-white" viewBox="0 0 100 100">
+                <path d="M50 5 L85 85 L50 68 L15 85 Z" />
+                <circle cx="50" cy="30" r="5" class="text-brand-dark" style="fill:rgba(0,0,0,0.45)" />
+            </svg>
+            <span class="font-display font-bold text-xl tracking-[0.4rem] uppercase hidden sm:block">AD ASTRA</span>
+        </a>
+
+        <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-[0.2rem] uppercase">
+            <a href="#home" class="hover:text-brand-cyan transition-colors">Home</a>
+            <a href="#showreel" class="hover:text-brand-cyan transition-colors">Showreel</a>
+            <a href="#worlds" class="hover:text-brand-cyan transition-colors">Worlds</a>
+            <a href="#studio" class="hover:text-brand-cyan transition-colors">Studio</a>
+            <a href="#gallery" class="hover:text-brand-cyan transition-colors">Gallery</a>
+            <a href="#contact" class="hover:text-brand-cyan transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark/95 backdrop-blur hidden flex-col items-center justify-center gap-8 text-2xl font-display uppercase tracking-[0.3rem]">
+        <a href="#home" class="mobile-link hover:text-brand-cyan transition-colors">Home</a>
+        <a href="#showreel" class="mobile-link hover:text-brand-cyan transition-colors">Showreel</a>
+        <a href="#worlds" class="mobile-link hover:text-brand-cyan transition-colors">Worlds</a>
+        <a href="#studio" class="mobile-link hover:text-brand-cyan transition-colors">Studio</a>
+        <a href="#gallery" class="mobile-link hover:text-brand-cyan transition-colors">Gallery</a>
+        <a href="#contact" class="mobile-link hover:text-brand-cyan transition-colors">Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <header id="home" class="relative min-h-screen flex items-center">
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center"></div>
+        <div class="relative container mx-auto px-6 py-24 grid gap-12 lg:grid-cols-[1.2fr_1fr] items-center">
+            <div>
+                <p class="text-brand-cyan font-semibold tracking-[0.5rem] uppercase mb-6">Game Studio · Est. 2020</p>
+                <h1 class="font-display font-black text-5xl md:text-7xl leading-tight mb-8">
+                    Cinematic Worlds<br>
+                    Crafted For Bold Explorers
+                </h1>
+                <p class="text-lg md:text-xl text-white/75 max-w-2xl mb-10">
+                    From concept art to final launch, we build story-rich experiences that blend stellar art direction, atmospheric audio, and responsive gameplay.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#showreel" class="uppercase tracking-[0.3rem] font-bold text-sm bg-brand-cyan text-black px-8 py-4 rounded-full hover:bg-white transition-colors">Watch Showreel</a>
+                    <a href="#worlds" class="uppercase tracking-[0.3rem] font-bold text-sm border border-white/40 px-8 py-4 rounded-full hover:border-brand-cyan hover:text-brand-cyan transition-colors">View Worlds</a>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 flex flex-col gap-6 max-w-sm">
+                <span class="text-sm uppercase tracking-[0.3rem] text-brand-cyan">Upcoming Launch</span>
+                <h3 class="font-display text-3xl">Project Nebula</h3>
+                <p class="text-white/70 text-sm leading-relaxed">
+                    A survival odyssey across procedurally generated star systems. Co-op exploration, emergent narrative, fully orchestrated soundtrack.
+                </p>
+                <div class="flex items-center justify-between text-xs uppercase tracking-[0.2rem] text-white/60">
+                    <span>Alpha Access</span>
+                    <span>Q4 · 2026</span>
+                </div>
+                <a href="#contact" class="text-sm font-semibold text-brand-cyan hover:text-white transition-colors">Request Press Demo →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Showreel -->
+    <section id="showreel" class="py-24 bg-brand-dark/70">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+                <h2 class="section-title font-display font-black text-4xl md:text-5xl">Showreel 2026</h2>
+                <p class="md:max-w-xl text-white/70 text-base">A quick dive into the universes we craft. Replace the video below with your own YouTube or Vimeo trailer link.</p>
+            </div>
+
+            <div class="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/1cWfRBY2qOk" title="Ad Astra Showreel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Worlds -->
+    <section id="worlds" class="py-24 bg-brand-dark">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+                <div>
+                    <h2 class="section-title font-display font-black text-4xl md:text-5xl mb-4">Featured Worlds</h2>
+                    <p class="text-white/70 max-w-2xl text-base">Each project blends bespoke art pipelines, systemic gameplay, and original scores recorded with live ensembles.</p>
+                </div>
+                <div class="flex gap-6 text-xs uppercase tracking-[0.25rem] text-white/60">
+                    <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>In Development</span>
+                    <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-sky-400"></span>Playable Demo</span>
+                </div>
+            </div>
+
+            <div class="grid gap-8 lg:grid-cols-3">
+                <article class="featured-card rounded-3xl overflow-hidden border border-white/10 bg-white/5">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1614726365723-49cfae92782f?q=80&w=1600&auto=format&fit=crop" alt="Project Nebula key art" class="h-64 w-full object-cover">
+                        <span class="absolute top-4 right-4 bg-black/70 px-3 py-1 text-xs uppercase tracking-[0.3rem] rounded-full">Co-op</span>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="font-display text-2xl">Project Nebula</h3>
+                        <p class="text-sm text-white/70 leading-relaxed">Chart unclaimed galaxies, terraform drifting worlds, and share survival stories with your crew.</p>
+                        <div class="flex items-center justify-between text-xs uppercase tracking-[0.3rem] text-white/50">
+                            <span>PC · PS5</span>
+                            <span>Demo Live</span>
+                        </div>
+                        <a href="https://store.steampowered.com" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-cyan hover:text-white transition-colors" target="_blank" rel="noopener">Visit Steam Page<i class="fas fa-arrow-up-right-from-square text-xs"></i></a>
+                    </div>
+                </article>
+
+                <article class="featured-card rounded-3xl overflow-hidden border border-white/10 bg-white/5">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1600&auto=format&fit=crop" alt="Void Walker key art" class="h-64 w-full object-cover">
+                        <span class="absolute top-4 right-4 bg-black/70 px-3 py-1 text-xs uppercase tracking-[0.3rem] rounded-full">VR</span>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="font-display text-2xl">Void Walker</h3>
+                        <p class="text-sm text-white/70 leading-relaxed">A narrative VR thriller where every decision shifts reality across multiple timelines.</p>
+                        <div class="flex items-center justify-between text-xs uppercase tracking-[0.3rem] text-white/50">
+                            <span>Quest · PC VR</span>
+                            <span>Early Access</span>
+                        </div>
+                        <a href="https://www.oculus.com" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-cyan hover:text-white transition-colors" target="_blank" rel="noopener">Wishlist on Meta<i class="fas fa-arrow-up-right-from-square text-xs"></i></a>
+                    </div>
+                </article>
+
+                <article class="featured-card rounded-3xl overflow-hidden border border-white/10 bg-white/5">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1600&auto=format&fit=crop" alt="Starlight Chronicles key art" class="h-64 w-full object-cover">
+                        <span class="absolute top-4 right-4 bg-black/70 px-3 py-1 text-xs uppercase tracking-[0.3rem] rounded-full">Tactics</span>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="font-display text-2xl">Starlight Chronicles</h3>
+                        <p class="text-sm text-white/70 leading-relaxed">Command elite fleets in large-scale tactical battles inspired by golden-age sci-fi classics.</p>
+                        <div class="flex items-center justify-between text-xs uppercase tracking-[0.3rem] text-white/50">
+                            <span>PC · Xbox</span>
+                            <span>Prototype</span>
+                        </div>
+                        <a href="https://xbox.com" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-cyan hover:text-white transition-colors" target="_blank" rel="noopener">Follow Development<i class="fas fa-arrow-up-right-from-square text-xs"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Snapshot -->
+    <section id="studio" class="py-24 bg-grid-nebula bg-cover bg-center">
+        <div class="container mx-auto px-6">
+            <div class="grid gap-10 lg:grid-cols-2 items-start">
+                <div class="glass-card rounded-3xl p-10 space-y-6">
+                    <h2 class="section-title font-display text-4xl md:text-5xl">Studio Snapshot</h2>
+                    <p class="text-sm text-white/70 leading-relaxed">We blend film-inspired storytelling with interactive systems, keeping player agency at the heart of every decision.</p>
+                    <ul class="space-y-4 text-sm text-white/70">
+                        <li class="flex gap-4"><span class="text-brand-cyan">01.</span> Narrative, audio, and gameplay teams collaborate in one pipeline.</li>
+                        <li class="flex gap-4"><span class="text-brand-cyan">02.</span> In-house mocap stage captures expressive performances.</li>
+                        <li class="flex gap-4"><span class="text-brand-cyan">03.</span> Proprietary galaxy generator handles billions of combinations.</li>
+                    </ul>
+                    <div class="grid grid-cols-2 gap-6 pt-4">
+                        <div>
+                            <span class="text-3xl font-display">35</span>
+                            <p class="text-xs uppercase tracking-[0.3rem] text-white/50">Developers</p>
+                        </div>
+                        <div>
+                            <span class="text-3xl font-display">12</span>
+                            <p class="text-xs uppercase tracking-[0.3rem] text-white/50">Active Collaborators</p>
+                        </div>
+                        <div>
+                            <span class="text-3xl font-display">4</span>
+                            <p class="text-xs uppercase tracking-[0.3rem] text-white/50">Worlds In Production</p>
+                        </div>
+                        <div>
+                            <span class="text-3xl font-display">∞</span>
+                            <p class="text-xs uppercase tracking-[0.3rem] text-white/50">Stories To Tell</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="glass-card rounded-3xl p-8">
+                        <h3 class="font-display text-2xl mb-3">Latest Transmission</h3>
+                        <p class="text-sm text-white/70 leading-relaxed">“Project Nebula” wins Best Art Direction at the Galactic Indie Awards 2025. Production diaries drop every second Friday.</p>
+                        <a href="https://medium.com" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-cyan hover:text-white transition-colors" target="_blank" rel="noopener">Read dev log<i class="fas fa-arrow-up-right-from-square text-xs"></i></a>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="glass-card rounded-3xl p-6">
+                            <span class="text-xs uppercase tracking-[0.3rem] text-white/50">Audio</span>
+                            <p class="text-lg font-semibold text-brand-cyan mt-2">Original soundtrack recorded with 48-piece orchestra in Budapest.</p>
+                        </div>
+                        <div class="glass-card rounded-3xl p-6">
+                            <span class="text-xs uppercase tracking-[0.3rem] text-white/50">Technology</span>
+                            <p class="text-lg font-semibold text-brand-cyan mt-2">Unreal Engine + Houdini pipeline powering dynamic weather and volumetric nebulae.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-24 bg-brand-dark">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+                <h2 class="section-title font-display font-black text-4xl md:text-5xl">Production Stills</h2>
+                <p class="md:max-w-xl text-white/70 text-base">Drop in your own concept art, behind-the-scenes photographs, or promotional renders.</p>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-3">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop" alt="Concept art 1" class="rounded-3xl object-cover h-64 w-full">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Concept art 2" class="rounded-3xl object-cover h-64 w-full">
+                <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop" alt="Concept art 3" class="rounded-3xl object-cover h-64 w-full">
+                <img src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=1200&auto=format&fit=crop" alt="Concept art 4" class="rounded-3xl object-cover h-64 w-full">
+                <img src="https://images.unsplash.com/photo-1475724017904-b712052c192a?q=80&w=1200&auto=format&fit=crop" alt="Concept art 5" class="rounded-3xl object-cover h-64 w-full">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Concept art 6" class="rounded-3xl object-cover h-64 w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Community CTA -->
+    <section class="py-24 bg-brand-dark/80">
+        <div class="container mx-auto px-6">
+            <div class="glass-card rounded-3xl p-10 md:p-16 flex flex-col lg:flex-row gap-10 items-center justify-between">
+                <div>
+                    <h2 class="font-display text-4xl md:text-5xl mb-4">Join The Community</h2>
+                    <p class="text-white/70 max-w-xl text-base">Share feedback, unlock exclusive wallpapers, and receive quarterly production notes straight from the directors.</p>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://discord.com" class="uppercase tracking-[0.3rem] font-bold text-xs bg-brand-cyan text-black px-8 py-4 rounded-full hover:bg-white transition-colors" target="_blank" rel="noopener">Discord</a>
+                    <a href="https://twitter.com" class="uppercase tracking-[0.3rem] font-bold text-xs border border-white/40 px-8 py-4 rounded-full hover:border-brand-cyan hover:text-brand-cyan transition-colors" target="_blank" rel="noopener">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-brand-dark">
+        <div class="container mx-auto px-6">
+            <div class="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+                <div>
+                    <h2 class="section-title font-display text-4xl md:text-5xl mb-6">Contact</h2>
+                    <p class="text-white/70 text-base mb-6">Connect with us for press, partnerships, soundtrack licensing, or collaboration inquiries.</p>
+                    <div class="space-y-4 text-sm text-white/70">
+                        <a href="mailto:hello@adastra.studio" class="flex items-center gap-3 hover:text-brand-cyan transition-colors"><i class="fas fa-envelope text-brand-cyan"></i>hello@adastra.studio</a>
+                        <a href="https://maps.google.com" class="flex items-center gap-3 hover:text-brand-cyan transition-colors" target="_blank" rel="noopener"><i class="fas fa-location-dot text-brand-cyan"></i>Remote first · Vancouver · Helsinki</a>
+                        <a href="https://cal.com" class="flex items-center gap-3 hover:text-brand-cyan transition-colors" target="_blank" rel="noopener"><i class="fas fa-calendar text-brand-cyan"></i>Schedule a discovery call</a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 space-y-4">
+                    <h3 class="font-display text-2xl">Press & Assets</h3>
+                    <p class="text-sm text-white/70">Download brand guidelines, approved screenshots, key art, and soundtrack samples for coverage.</p>
+                    <a href="https://drive.google.com" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-cyan hover:text-white transition-colors" target="_blank" rel="noopener">Download Press Kit<i class="fas fa-arrow-up-right-from-square text-xs"></i></a>
+                    <div class="pt-4 flex gap-4 text-white/60">
+                        <a href="https://youtube.com" class="hover:text-brand-cyan transition-colors" target="_blank" rel="noopener"><i class="fab fa-youtube text-xl"></i></a>
+                        <a href="https://instagram.com" class="hover:text-brand-cyan transition-colors" target="_blank" rel="noopener"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="https://linkedin.com" class="hover:text-brand-cyan transition-colors" target="_blank" rel="noopener"><i class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="https://tiktok.com" class="hover:text-brand-cyan transition-colors" target="_blank" rel="noopener"><i class="fab fa-tiktok text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white/60 text-xs uppercase tracking-[0.3rem]">
+        <div class="container mx-auto px-6 py-12 flex flex-col md:flex-row gap-6 md:gap-0 md:items-center md:justify-between">
+            <p>© 2026 Ad Astra Studio. All rights reserved.</p>
+            <p>Built with love among the stars.</p>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let menuOpen = false;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('bg-brand-dark/90', 'backdrop-blur', 'py-4', 'shadow-lg');
+                navbar.classList.remove('py-6', 'bg-transparent');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-6');
+                navbar.classList.remove('bg-brand-dark/90', 'backdrop-blur', 'py-4', 'shadow-lg');
+            }
+        });
+
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('hidden');
+            document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
+            menuBtn.innerHTML = menuOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    </script>
+</body>
+</html>
